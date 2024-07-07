@@ -13,6 +13,9 @@
 		C56522092C3B05AA00E1122E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C56522082C3B05AA00E1122E /* Base */; };
 		C565220B2C3B05AA00E1122E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C565220A2C3B05AA00E1122E /* Assets.xcassets */; };
 		C565220E2C3B05AA00E1122E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = C565220D2C3B05AA00E1122E /* Base */; };
+		C56522162C3B0B5200E1122E /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56522152C3B0B5200E1122E /* Card.swift */; };
+		C56522182C3B0BE600E1122E /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56522172C3B0BE600E1122E /* Deck.swift */; };
+		C565221A2C3B11D100E1122E /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56522192C3B11D100E1122E /* GameManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		C565220A2C3B05AA00E1122E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C565220D2C3B05AA00E1122E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C565220F2C3B05AA00E1122E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C56522152C3B0B5200E1122E /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		C56522172C3B0BE600E1122E /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		C56522192C3B11D100E1122E /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				C565220A2C3B05AA00E1122E /* Assets.xcassets */,
 				C565220C2C3B05AA00E1122E /* LaunchScreen.storyboard */,
 				C565220F2C3B05AA00E1122E /* Info.plist */,
+				C56522152C3B0B5200E1122E /* Card.swift */,
+				C56522172C3B0BE600E1122E /* Deck.swift */,
+				C56522192C3B11D100E1122E /* GameManager.swift */,
 			);
 			path = CardWarGame;
 			sourceTree = "<group>";
@@ -139,8 +148,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C56522062C3B05AA00E1122E /* ViewController.swift in Sources */,
+				C565221A2C3B11D100E1122E /* GameManager.swift in Sources */,
 				C56522022C3B05AA00E1122E /* AppDelegate.swift in Sources */,
+				C56522182C3B0BE600E1122E /* Deck.swift in Sources */,
 				C56522042C3B05AA00E1122E /* SceneDelegate.swift in Sources */,
+				C56522162C3B0B5200E1122E /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

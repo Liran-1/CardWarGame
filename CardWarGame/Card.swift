@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Card {
+    let value: Int
+    let suit:String
+}
