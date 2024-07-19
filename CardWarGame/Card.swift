@@ -9,5 +9,13 @@ import Foundation
 
 struct Card {
     let value: Int
-    let suit:String
+    let suit: Suit
+    
+    var imageName: String {
+        return "\(value)_of_\(suit.rawValue)"
+    }
+}
+
+enum Suit: String {
+    case clubs, hearts, diamonds, spades
 }

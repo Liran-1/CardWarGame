@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+class Player {
+    var cards: [Card] = []
+    var score: Int = 0
+    
+    func addCard(card: Card) {
+        cards.append(card)
+    }
+    
+}

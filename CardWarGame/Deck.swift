@@ -8,13 +8,13 @@
 import Foundation
 
 class Deck {
-    var cards = [Card]()
+    private var cards: [Card] = []
     
     init() {
-        for _ in 0..<30 {
-            let value = Int.random(in: 1...10)
-            let suit = ["Hearts", "Diamonds", "Clubs", "Spades"].randomElement()!
-            cards.append(Card(value: value, suit: suit))
+        for suit in [Suit.clubs, Suit.hearts, Suit.diamonds, Suit.spades] {
+            for value in 1..<11 {
+                cards.append(Card(value: value, suit: suit))
+            }
         }
     }
     
@@ -22,12 +22,31 @@ class Deck {
         cards.shuffle()
     }
     
-    func dealCards(numCards: Int) -> [Card] {
-        var dealtCards = [Card]()
-        for _ in 0..<numCards {
-            dealtCards.append(cards.removeLast())
-        }
-        return dealtCards
+    func dealCard() -> Card? {
+        return cards.popLast()
     }
+    
+    func compareCard(card1: Card, card2: Card) -> Int {
+        if(card1.value > card2.value) {
+            return 1
+        } else if ( card1.value < card2.value) {
+            return -1
+        }
+        else{
+            return 0
+        }
+    }
+    
+    
+//    func dealCards(numCards: Int) -> [Card] {
+//        var dealtCards = [Card]()
+//        for _ in 0..<numCards {
+//            if let card = dealCard(){
+//                dealtCards.add(card)
+//            }
+//            dealtCards.append(cards.removeLast())
+//        }
+//        return dealtCards
+//    }
     
 }
