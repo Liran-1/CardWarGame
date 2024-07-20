@@ -12,7 +12,7 @@ class Deck {
     
     init() {
         for suit in [Suit.clubs, Suit.hearts, Suit.diamonds, Suit.spades] {
-            for value in 1..<11 {
+            for value in 2..<14 {
                 cards.append(Card(value: value, suit: suit))
             }
         }
@@ -26,7 +26,7 @@ class Deck {
         return cards.popLast()
     }
     
-    func compareCard(card1: Card, card2: Card) -> Int {
+    func compareCards(card1: Card, card2: Card) -> Int {
         if(card1.value > card2.value) {
             return 1
         } else if ( card1.value < card2.value) {

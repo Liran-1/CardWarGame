@@ -9,43 +9,44 @@ import Foundation
 
 class GameManager {
     var deck = Deck()
-    var player1Cards = [Card]()
-    var player2Cards = [Card]()
-    var player1Score = 0
-    var player2Score = 0
+    var playerEastCards = [Card]()
+    var playerWestCards = [Card]()
+    var playerEastScore = 0
+    var playerWestScore = 0
     
-    private var player1: Player
-    private var player2: Player
+    private var playerEast: Player
+    private var playerWest: Player
+    
+    
     
     init() {
         deck = Deck()
-        player1 = Player()
-        player2 = Player()
-    }
+        playerEast = Player()
+        playerWest = Player()
+    } // end func init
     
     func dealCards() {
         // Shuffle the deck
         deck.shuffle()
         
         // Deal cards to players
-        for _ in 0..<20 {
+        for _ in 0..<10 {
             if let card = deck.dealCard() {
-                player1.addCard(card: card)
-            }
+                playerEast.addCard(card: card)
+            } // end if
             if let card = deck.dealCard() {
-                player2.addCard(card: card)
-            }
-        }
-        
-    }
+                playerWest.addCard(card: card)
+            }   // end if
+        } // end for
+    } // end func dealCards
     
-    func playRound() -> (card1: Card, card2: Card)? {
-        guard let card1 = player1.cards.popLast(),
-              let card2 = player2.cards.popLast() else {
+    func playRound() -> (cardEast: Card, cardWest: Card)? {
+        guard let cardEast = playerEast.cards.popLast(),
+              let cardWest = playerWest.cards.popLast() else {
             return nil
-        }
+        } // end guard
                 
-        return (card1, card2)
+        return (cardEast, cardWest)
         
 //        player1Cards = deck.dealCards(numCards: 10)
 //        player2Cards = deck.dealCards(numCards: 10)
@@ -71,17 +72,17 @@ class GameManager {
 //            }
 //            currentCardIndex += 1
 //        })
-    }
+    } // end func playRound
     
     func determineWinner() -> Int {
         var winner = 0
-        if player1Score > player1Score{
+        if playerEastScore > playerEastScore{
             winner = 1
-        } else if  player1Score >  player1Score {
+        } else if  playerEastScore >  playerEastScore {
             winner = 2
         } else{
             winner = 0
         }
         return winner
-    }
+    } // end func determineWinner
 }

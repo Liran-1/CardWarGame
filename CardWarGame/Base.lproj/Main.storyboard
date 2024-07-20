@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SXn-QM-hFo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -65,14 +65,25 @@
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="T6F-Ou-A5s"/>
+                                <exclude reference="4jl-uN-oMz"/>
                                 <exclude reference="wuF-qF-tGF"/>
                                 <exclude reference="0JL-Ns-Tsv"/>
                                 <exclude reference="ujC-Kw-9Xy"/>
                             </mask>
                         </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="T6F-Ou-A5s"/>
+                                <include reference="4jl-uN-oMz"/>
+                                <include reference="wuF-qF-tGF"/>
+                                <include reference="0JL-Ns-Tsv"/>
+                                <include reference="ujC-Kw-9Xy"/>
+                            </mask>
+                        </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="T6F-Ou-A5s"/>
+                                <include reference="4jl-uN-oMz"/>
                                 <include reference="wuF-qF-tGF"/>
                                 <include reference="0JL-Ns-Tsv"/>
                                 <include reference="ujC-Kw-9Xy"/>
@@ -80,10 +91,10 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="Player1Card" destination="T6F-Ou-A5s" id="CZ6-sv-GbW"/>
-                        <outlet property="Player1Scpre" destination="wuF-qF-tGF" id="1Hd-4t-FJh"/>
-                        <outlet property="Player2Card" destination="4jl-uN-oMz" id="yfS-TA-Vci"/>
-                        <outlet property="Player2Score" destination="0JL-Ns-Tsv" id="cLM-YZ-4FM"/>
+                        <outlet property="PlayerEastCard" destination="T6F-Ou-A5s" id="k6n-W9-NOr"/>
+                        <outlet property="PlayerEastScore" destination="wuF-qF-tGF" id="1Hd-4t-FJh"/>
+                        <outlet property="PlayerWestCard" destination="4jl-uN-oMz" id="Grj-yp-1Pa"/>
+                        <outlet property="PlayerWestScore" destination="0JL-Ns-Tsv" id="cLM-YZ-4FM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

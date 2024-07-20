@@ -9,40 +9,48 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var Player1Card: UIImageView!
-    @IBOutlet weak var Player2Card: UIImageView!
-    @IBOutlet weak var Player1Scpre: UILabel!
-    @IBOutlet weak var Player2Score: UILabel!
+    @IBOutlet weak var PlayerEastCard: UIImageView!
+    @IBOutlet weak var PlayerWestCard: UIImageView!
+    @IBOutlet weak var PlayerEastScore: UILabel!
+    @IBOutlet weak var PlayerWestScore: UILabel!
+    
     
     let gameManager = GameManager()
+    var gameTimer: Timer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setUIStart()
         gameManager.dealCards()
         self.startGame()
         
         // Do any additional setup after loading the view.
+    } // end func viewDidLoad
+    
+    func setUIStart() {
+        PlayerEastCard.image = UIImage(named: "playing_card_back")
+        PlayerWestCard.image = UIImage(named: "playing_card_back")
     }
     
     func startGame() {
-        Timer.scheduledTimer(withTimeInterval: 2, repeats: true){ timer in
-            let cardsPlayed = self.gameManager.playRound()
-            self.showCards(cardsPlayed: cardsPlayed!)
-            let roundResult = gameManager.Deck.compareCard(card1: cardsPlayed?.card1, card2: cardsPlayed?.card2)
-        }
+        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(playGameRound), userInfo: nil, repeats: true)
+    } // end func startGame
+    
+    @objc func playGameRound() {
+        let cardsPlayed = self.gameManager.playRound()
+        self.showCards(cardsPlayed: cardsPlayed!)
     }
     
-    func showCards(cardsPlayed: (card1: Card, card2: Card)) {
-        let card1Image = cardsPlayed.card1.imageName
-        let card2Image = cardsPlayed.card2.imageName
-        Player1Card.image = UIImage(named: card1Image)
-        Player2Card.image = UIImage(named: card2Image)
-    }
+    func showCards(cardsPlayed: (cardEast: Card, cardWest: Card)) {
+        let cardEastImage = cardsPlayed.cardEast.imageName
+        let cardWestImage = cardsPlayed.cardWest.imageName
+        PlayerEastCard.image = UIImage(named: cardEastImage)
+        PlayerWestCard.image = UIImage(named: cardWestImage)
+    } // end func showCards
     
     
     
 
 
-}
+} // end class ViewController
 
