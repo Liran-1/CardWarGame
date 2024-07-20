@@ -38,6 +38,10 @@ class GameManager {
                 playerWest.addCard(card: card)
             }   // end if
         } // end for
+        print(playerEast.cards)
+        print()
+        print(playerWest.cards)
+        print()
     } // end func dealCards
     
     func playRound() -> (cardEast: Card, cardWest: Card)? {

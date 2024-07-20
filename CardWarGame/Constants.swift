@@ -8,8 +8,14 @@
 import Foundation
 
 enum GameConstants {
-    static let numberOfGames = 10
+    static let roundsToPlay = 10
     static let timerFrontCard = 2
     static let timerBackCard = 3
-    
+    static let roundTime = timerFrontCard + timerBackCard
+    static let selfCard = "selfCard"
+    static let otherCard = "otherCard"
+}
+
+enum CardConstants {
+    static let cardImageBackgroundName = "playing_card_back"
 }

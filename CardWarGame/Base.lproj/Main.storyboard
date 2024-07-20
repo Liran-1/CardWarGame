@@ -91,10 +91,10 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="PlayerEastCard" destination="T6F-Ou-A5s" id="k6n-W9-NOr"/>
-                        <outlet property="PlayerEastScore" destination="wuF-qF-tGF" id="1Hd-4t-FJh"/>
-                        <outlet property="PlayerWestCard" destination="4jl-uN-oMz" id="Grj-yp-1Pa"/>
-                        <outlet property="PlayerWestScore" destination="0JL-Ns-Tsv" id="cLM-YZ-4FM"/>
+                        <outlet property="game_IMG_playerEastCard" destination="T6F-Ou-A5s" id="k6n-W9-NOr"/>
+                        <outlet property="game_IMG_playerWestCard" destination="4jl-uN-oMz" id="Grj-yp-1Pa"/>
+                        <outlet property="game_LBL_playerEastScore" destination="wuF-qF-tGF" id="1Hd-4t-FJh"/>
+                        <outlet property="game_LBL_playerWestScore" destination="0JL-Ns-Tsv" id="cLM-YZ-4FM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
