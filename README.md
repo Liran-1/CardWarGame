@@ -54,11 +54,6 @@ To run the Card Game iOS Application:
 - Core Location (for location-based assignment)
 - Xcode (Development Environment)
 
-## Screenshots
-
-![Welcome Screen](screenshots/welcome_screen.png)
-![Game Screen](screenshots/game_screen.png)
-
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
