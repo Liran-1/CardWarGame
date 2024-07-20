@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SXn-QM-hFo">
     <device id="retina6_12" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CardWarGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="CardWarGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,38 +101,59 @@
             </objects>
             <point key="canvasLocation" x="-25.35211267605634" y="3.8167938931297707"/>
         </scene>
-        <!--View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="6QW-Qx-FqW">
             <objects>
-                <viewController id="SXn-QM-hFo" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WelcomeScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SXn-QM-hFo" customClass="WelcomeViewController" customModule="CardWarGame" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zgB-tL-W8M">
                         <rect key="frame" x="0.0" y="0.0" width="852" height="393"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Your name here" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3Fh-L6-QEM">
-                                <rect key="frame" x="343.66666666666669" y="154" width="165" height="34"/>
+                                <rect key="frame" x="343.66666666666669" y="138.33333333333334" width="165" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter Your Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0D-4m-BtD">
-                                <rect key="frame" x="282" y="80" width="288" height="34"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="28"/>
+                                <rect key="frame" x="262" y="60" width="328" height="38.333333333333343"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="32"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSM-iq-tcx">
-                                <rect key="frame" x="388.66666666666669" y="305" width="75" height="35"/>
+                                <rect key="frame" x="395" y="305" width="62" height="35"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Start"/>
+                                <connections>
+                                    <action selector="welcome_BTN_start:" destination="SXn-QM-hFo" eventType="touchUpInside" id="KY8-tZ-8Y5"/>
+                                </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S45-e5-VDP">
+                                <rect key="frame" x="623" y="121.66666666666669" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="Af4-yS-nJz"/>
+                                    <constraint firstAttribute="width" secondItem="S45-e5-VDP" secondAttribute="height" multiplier="1:1" id="TZ7-s7-y0a"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qs9-bM-TVa">
+                                <rect key="frame" x="99" y="121.66666666666669" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="qs9-bM-TVa" secondAttribute="height" multiplier="1:1" id="FHp-Tt-Tyn"/>
+                                    <constraint firstAttribute="width" constant="150" id="nbx-xb-idd"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="k2F-de-xOD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="S45-e5-VDP" firstAttribute="centerY" secondItem="zgB-tL-W8M" secondAttribute="centerY" id="1LK-fg-iKZ"/>
+                            <constraint firstItem="qs9-bM-TVa" firstAttribute="leading" secondItem="k2F-de-xOD" secondAttribute="leading" constant="40" id="4J3-Lj-qB3"/>
+                            <constraint firstItem="qs9-bM-TVa" firstAttribute="centerY" secondItem="zgB-tL-W8M" secondAttribute="centerY" id="TiF-BT-Tqe"/>
                             <constraint firstItem="G0D-4m-BtD" firstAttribute="centerX" secondItem="zgB-tL-W8M" secondAttribute="centerX" id="Ujj-Ns-OFU"/>
                             <constraint firstItem="k2F-de-xOD" firstAttribute="bottom" secondItem="RSM-iq-tcx" secondAttribute="bottom" constant="32" id="XeE-Vq-hxL"/>
                             <constraint firstItem="RSM-iq-tcx" firstAttribute="centerX" secondItem="zgB-tL-W8M" secondAttribute="centerX" id="aao-r4-3Op"/>
-                            <constraint firstItem="G0D-4m-BtD" firstAttribute="top" secondItem="k2F-de-xOD" secondAttribute="top" constant="80" id="iqb-bK-Z7n"/>
+                            <constraint firstItem="G0D-4m-BtD" firstAttribute="top" secondItem="k2F-de-xOD" secondAttribute="top" constant="60" id="iqb-bK-Z7n"/>
+                            <constraint firstItem="k2F-de-xOD" firstAttribute="trailing" secondItem="S45-e5-VDP" secondAttribute="trailing" constant="20" id="n7P-4C-fGO"/>
                             <constraint firstItem="3Fh-L6-QEM" firstAttribute="top" secondItem="G0D-4m-BtD" secondAttribute="bottom" constant="40" id="nT2-aR-nDB"/>
                             <constraint firstItem="3Fh-L6-QEM" firstAttribute="centerX" secondItem="zgB-tL-W8M" secondAttribute="centerX" id="qPH-7v-9G1"/>
                         </constraints>
@@ -140,15 +161,31 @@
                             <mask key="subviews">
                                 <exclude reference="3Fh-L6-QEM"/>
                                 <exclude reference="G0D-4m-BtD"/>
+                                <exclude reference="RSM-iq-tcx"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="3Fh-L6-QEM"/>
+                                <include reference="G0D-4m-BtD"/>
+                                <include reference="RSM-iq-tcx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="subviews">
                                 <include reference="3Fh-L6-QEM"/>
                                 <include reference="G0D-4m-BtD"/>
+                                <include reference="RSM-iq-tcx"/>
                             </mask>
                         </variation>
                     </view>
+                    <connections>
+                        <outlet property="welcome_BTN_start" destination="RSM-iq-tcx" id="BoY-gx-bns"/>
+                        <outlet property="welcome_IMG_eastSide" destination="S45-e5-VDP" id="0eo-v5-hsu"/>
+                        <outlet property="welcome_IMG_westSide" destination="qs9-bM-TVa" id="6SQ-TM-J1p"/>
+                        <outlet property="welcome_LBL_enterName" destination="G0D-4m-BtD" id="NIB-8x-4Hb"/>
+                        <outlet property="welcome_TXTF_enterName" destination="3Fh-L6-QEM" id="vgj-hr-9X3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdo-nt-1Uh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
