@@ -50,9 +50,9 @@ class WelcomeViewController: UIViewController{
     func welcomeUser() {
         welcome_TXTF_enterName.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged) // update UI on textField changes
         
-        if let userName = UserDefaults.standard.string(forKey: "userName"){     // if name found in UserDefaults
+        if let userName = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName){     // if name found in UserDefaults
             welcome_LBL_enterName.text = "Welcome \(userName)"
-            welcome_TXTF_enterName.isHidden = false
+            welcome_TXTF_enterName.isHidden = true
         } else {                                                                // if name not found in UserDefaults
             welcome_LBL_enterName.text = "Enter your name"
             welcome_TXTF_enterName.isHidden = false
@@ -68,20 +68,13 @@ class WelcomeViewController: UIViewController{
     }
         
     @IBAction func welcome_BTN_start(_ sender: Any) {
-        if let userName = welcome_TXTF_enterName.text {
-            UserDefaults.standard.set(userName, forKey: "userName")
-            navigateToGameScreen()
+        if let userName = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName) {
+            return
+        } else if let userName = welcome_TXTF_enterName.text {
+            UserDefaults.standard.set(userName, forKey: UserDefaultsConstants.userName)
         }
     }
-    
-    func navigateToGameScreen() {
-        print("navigating")
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
-            navigationController?.pushViewController(viewController, animated: true)
-        }
-    }
-    
+
 }
 
 extension WelcomeViewController:  CLLocationManagerDelegate  {
@@ -93,5 +86,7 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
         locationManager.requestWhenInUseAuthorization()
         
     }
+    
+    
 
 }

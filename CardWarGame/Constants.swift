@@ -8,14 +8,22 @@
 import Foundation
 
 enum GameConstants {
-    static let roundsToPlay = 10
+    static let roundsToPlay = 1
     static let timerFrontCard = 2
     static let timerBackCard = 3
     static let roundTime = timerFrontCard + timerBackCard
+    static let computerName = "PC"
+    static let eastSide = "eastSide"
+    static let westSide = "westSide"
     static let selfCard = "selfCard"
     static let otherCard = "otherCard"
     static let animateLeftStr = "left"
     static let animateRightStr = "right"
+}
+
+enum EndGameConstants {
+    static let winner = "Winner:"
+    static let score = "Score:"
 }
 
 enum CardConstants {
@@ -25,4 +33,9 @@ enum CardConstants {
 enum WelcomeConstants {
     static let enterYourName = "Enter Your Name"
     static let welcome = "Welcome "
+}
+
+enum UserDefaultsConstants {
+    static let userName = "userName"
+    static let playerSide = "playerSide"
 }

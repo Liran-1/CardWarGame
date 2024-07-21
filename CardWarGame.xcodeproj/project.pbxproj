@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C550260B2C4C5E3D00F47481 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C550260A2C4C5E3D00F47481 /* WelcomeViewController.swift */; };
+		C554B5DE2C4DA24C0035CA6E /* EndGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C554B5DD2C4DA24C0035CA6E /* EndGameViewController.swift */; };
 		C56522022C3B05AA00E1122E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56522012C3B05AA00E1122E /* AppDelegate.swift */; };
 		C56522042C3B05AA00E1122E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56522032C3B05AA00E1122E /* SceneDelegate.swift */; };
 		C56522062C3B05AA00E1122E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56522052C3B05AA00E1122E /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		C550260A2C4C5E3D00F47481 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		C554B5DD2C4DA24C0035CA6E /* EndGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewController.swift; sourceTree = "<group>"; };
 		C56521FE2C3B05AA00E1122E /* CardWarGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardWarGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56522012C3B05AA00E1122E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C56522032C3B05AA00E1122E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				C5BD4D8C2C4B02ED00AED0ED /* Player.swift */,
 				C5F5FE022C4BC7B500DA523D /* Constants.swift */,
 				C550260A2C4C5E3D00F47481 /* WelcomeViewController.swift */,
+				C554B5DD2C4DA24C0035CA6E /* EndGameViewController.swift */,
 			);
 			path = CardWarGame;
 			sourceTree = "<group>";
@@ -154,6 +157,7 @@
 			files = (
 				C550260B2C4C5E3D00F47481 /* WelcomeViewController.swift in Sources */,
 				C56522062C3B05AA00E1122E /* ViewController.swift in Sources */,
+				C554B5DE2C4DA24C0035CA6E /* EndGameViewController.swift in Sources */,
 				C565221A2C3B11D100E1122E /* GameManager.swift in Sources */,
 				C56522022C3B05AA00E1122E /* AppDelegate.swift in Sources */,
 				C56522182C3B0BE600E1122E /* Deck.swift in Sources */,

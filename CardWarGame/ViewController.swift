@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var game_LBL_playerEastScore: UILabel!
     @IBOutlet weak var game_LBL_playerWestScore: UILabel!
     
+    @IBOutlet weak var game_LBL_playerEastName: UILabel!
+    
+    @IBOutlet weak var game_LBL_playerWestName: UILabel!
+    
     let gameManager = GameManager()
     var gameTimer: Timer?
     
@@ -34,6 +38,14 @@ class ViewController: UIViewController {
     func setUIStart() {
         self.game_IMG_playerEastCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
         self.game_IMG_playerWestCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
+        let playerSide = GameConstants.eastSide//UserDefaults.standard.string(forKey: UserDefaultsConstants.playerSide)
+        if (playerSide == GameConstants.eastSide){
+            self.game_LBL_playerEastName.text = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName)
+            self.game_LBL_playerWestName.text = UserDefaults.standard.string(forKey: GameConstants.computerName)
+        } else {
+            self.game_LBL_playerEastName.text = UserDefaults.standard.string(forKey: GameConstants.computerName)
+            self.game_LBL_playerWestName.text = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName)
+        }
     }
     
     func startGame() {
@@ -64,7 +76,7 @@ class ViewController: UIViewController {
         let animationDuration: Double = 1
         
         game_IMG_playerEastCard.image = UIImage(named: cardEastImage)
-        animateImageVIew(image: game_IMG_playerEastCard, duration: animationDuration, flipSide: GameConstants.animateLeftStr)
+        animateImageVIew(image: game_IMG_playerEastCard, duration: animationDuration, flipSide: GameConstants.animateRightStr)
 
         game_IMG_playerWestCard.image = UIImage(named: cardWestImage)
         animateImageVIew(image: game_IMG_playerWestCard, duration: animationDuration, flipSide: GameConstants.animateLeftStr)
@@ -111,7 +123,30 @@ class ViewController: UIViewController {
     }
     
     func finishGame() {
-        
+        saveWinner()
+        navigateToEndGameScreen()
+    }
+    
+    func saveWinner() {
+        if playerEastScore > playerWestScore {
+            UserDefaults.standard.set(playerEastScore, forKey: EndGameConstants.score)
+            UserDefaults.standard.set(game_LBL_playerEastScore.text, forKey: EndGameConstants.winner)
+        } else if playerWestScore > playerEastScore{
+            UserDefaults.standard.set(playerWestScore, forKey: EndGameConstants.score)
+            UserDefaults.standard.set(game_LBL_playerWestScore.text, forKey: EndGameConstants.winner)
+        } else {
+            UserDefaults.standard.set(playerEastScore, forKey: EndGameConstants.score)
+            UserDefaults.standard.set(GameConstants.computerName, forKey: EndGameConstants.winner)
+        }
+    }
+    
+    func navigateToEndGameScreen() {
+        print("navigating")
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        if let viewController = storyboard?.instantiateViewController(withIdentifier: "EndGameViewController") as? ViewController {
+//            self.navigationController?.pushViewController(viewController, animated: true)
+//        }
+        performSegue(withIdentifier: "EndGameSegue", sender: nil)
     }
 
 
