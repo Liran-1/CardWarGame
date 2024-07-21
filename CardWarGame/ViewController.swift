@@ -26,23 +26,23 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setUIStart()
+        self.setUIStart()
         gameManager.dealCards()
         self.startGame()
     } // end func viewDidLoad
     
     func setUIStart() {
-        game_IMG_playerEastCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
-        game_IMG_playerWestCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
+        self.game_IMG_playerEastCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
+        self.game_IMG_playerWestCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
     }
     
     func startGame() {
-        gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(playGameRound), userInfo: nil, repeats: true)
+        self.gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(playGameRound), userInfo: nil, repeats: true)
     } // end func startGame
     
     @objc func playGameRound() {
         if(roundsCounter == GameConstants.roundsToPlay) {
-            gameTimer?.invalidate()
+            self.gameTimer?.invalidate()
             finishGame()
         }
         timerCounter += 1
@@ -60,39 +60,54 @@ class ViewController: UIViewController {
     func showCards(cardsPlayed: (cardEast: Card, cardWest: Card)) {
         let cardEastImage = cardsPlayed.cardEast.imageName
         let cardWestImage = cardsPlayed.cardWest.imageName
+        
+        let animationDuration: Double = 1
+        
         game_IMG_playerEastCard.image = UIImage(named: cardEastImage)
-        UIView.transition(with: game_IMG_playerEastCard, duration: 1.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
+        animateImageVIew(image: game_IMG_playerEastCard, duration: animationDuration, flipSide: GameConstants.animateLeftStr)
+
         game_IMG_playerWestCard.image = UIImage(named: cardWestImage)
-        UIView.transition(with: game_IMG_playerWestCard, duration: 1.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        animateImageVIew(image: game_IMG_playerWestCard, duration: animationDuration, flipSide: GameConstants.animateLeftStr)
     } // end func showCards
     
     func updateScore(cardsPlayed: (cardEast: Card, cardWest: Card)) {
-        
         let roundResult = cardsPlayed.cardEast.compareCards(otherCard: cardsPlayed.cardWest)
+        let animationDuration: Double = 1.25
         if(roundResult == GameConstants.selfCard) {
             self.playerEastScore += 1
             self.game_LBL_playerEastScore.text = String(playerEastScore)
-            animateScore(label: game_LBL_playerEastScore)
+            animateScorePush(label: game_LBL_playerEastScore, duration: animationDuration)
         } else if (roundResult == GameConstants.otherCard) {
             self.playerWestScore += 1
             self.game_LBL_playerWestScore.text = String(playerWestScore)
-            animateScore(label: game_LBL_playerWestScore)
+            animateScorePush(label: game_LBL_playerWestScore, duration: animationDuration)
         }
-    }
+    } // end func updateScore
     
-    func animateScore(label: UILabel) {
+    func animateScorePush(label: UILabel, duration: Double) {
         self.animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         self.animation.type = CATransitionType.push
         self.animation.subtype = CATransitionSubtype.fromTop
-        self.animation.duration = 1.25
+        self.animation.duration = duration
         label.layer.add(animation, forKey: CATransitionType.push.rawValue)
-    }
+    } // end func animateScorePush
     
     func hideCards() {
+        let animationTime: Double = 1
         self.game_IMG_playerEastCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
-        UIView.transition(with: game_IMG_playerEastCard, duration: 1.5, options: .transitionFlipFromLeft, animations: nil, completion: nil)
+        animateImageVIew(image: game_IMG_playerEastCard, duration: animationTime, flipSide: GameConstants.animateLeftStr)
         self.game_IMG_playerWestCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
-        UIView.transition(with: game_IMG_playerWestCard, duration: 1.5, options: .transitionFlipFromRight, animations: nil, completion: nil)
+        animateImageVIew(image: game_IMG_playerWestCard, duration: animationTime, flipSide: GameConstants.animateRightStr)
+    }
+    
+    func animateImageVIew(image: UIView, duration: Double, flipSide: String) {
+        var flipOption: UIView.AnimationOptions
+        if(flipSide == GameConstants.animateLeftStr){
+            flipOption = .transitionFlipFromLeft
+        } else {
+            flipOption = .transitionFlipFromRight
+        }
+        UIView.transition(with: image, duration: duration, options: flipOption, animations: nil, completion: nil)
     }
     
     func finishGame() {

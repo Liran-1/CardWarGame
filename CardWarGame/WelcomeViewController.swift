@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
+class WelcomeViewController: UIViewController{
     @IBOutlet weak var welcome_LBL_enterName: UILabel!
     @IBOutlet weak var welcome_TXTF_enterName: UITextField!
     @IBOutlet weak var welcome_IMG_westSide: UIImageView!
@@ -31,16 +31,29 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func initUI() {
+        let orientationSetting = UIInterfaceOrientation.landscapeLeft.rawValue
+        UIDevice.current.setValue(orientationSetting, forKey: "orientation")                // set orientation
+        
+        // Set UI images
         self.welcome_IMG_eastSide.image = UIImage(named: "east_earth")
         self.welcome_IMG_westSide.image = UIImage(named: "west_earth")
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {               // set orientation to landscape only
+        return .landscape
+    }
+    
+    override var shouldAutorotate: Bool {
+        return true
+    }
+    
     func welcomeUser() {
-        welcome_TXTF_enterName.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        if let userName = UserDefaults.standard.string(forKey: "userName"){
+        welcome_TXTF_enterName.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged) // update UI on textField changes
+        
+        if let userName = UserDefaults.standard.string(forKey: "userName"){     // if name found in UserDefaults
             welcome_LBL_enterName.text = "Welcome \(userName)"
             welcome_TXTF_enterName.isHidden = false
-        } else {
+        } else {                                                                // if name not found in UserDefaults
             welcome_LBL_enterName.text = "Enter your name"
             welcome_TXTF_enterName.isHidden = false
         }
@@ -53,14 +66,6 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             welcome_BTN_start.isEnabled = false
         }
     }
-    
-    func setLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        
-        locationManager.requestWhenInUseAuthorization()
-        
-    }
         
     @IBAction func welcome_BTN_start(_ sender: Any) {
         if let userName = welcome_TXTF_enterName.text {
@@ -70,9 +75,23 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     func navigateToGameScreen() {
+        print("navigating")
 //        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        if let viewController = storyboard?.instantiateViewController(withIdentifier: "GameScreen") as? ViewController {
+        if let viewController = storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController {
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
+    
+}
+
+extension WelcomeViewController:  CLLocationManagerDelegate  {
+
+    func setLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+        locationManager.requestWhenInUseAuthorization()
+        
+    }
+
 }

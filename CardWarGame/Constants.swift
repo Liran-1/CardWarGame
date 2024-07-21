@@ -14,8 +14,15 @@ enum GameConstants {
     static let roundTime = timerFrontCard + timerBackCard
     static let selfCard = "selfCard"
     static let otherCard = "otherCard"
+    static let animateLeftStr = "left"
+    static let animateRightStr = "right"
 }
 
 enum CardConstants {
     static let cardImageBackgroundName = "playing_card_back"
+}
+
+enum WelcomeConstants {
+    static let enterYourName = "Enter Your Name"
+    static let welcome = "Welcome "
 }
