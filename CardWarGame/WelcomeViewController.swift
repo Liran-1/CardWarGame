@@ -87,32 +87,54 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
     func initLocationManager() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        
         locationManager.requestWhenInUseAuthorization()
         
+        locationManager.startUpdatingLocation()
+        locationManager.stopUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else { return }
         
-        let latitude = location.coordinate.latitude
-        let longitude = location.coordinate.longitude
+        if let location = locations.last {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+
+            print("\(longitude)")
+            if longitude > LocationConstants.sideLongitude {
+                updateUILocation(playerSide: LocationConstants.east)
+            } else {
+                updateUILocation(playerSide: LocationConstants.west)
+            }
+        }
         
+//        guard let location = locations.first else {print("NoLocation"); return }
         
+//       let latitude = location.coordinate.latitude
+//        let longitude = location.coordinate.longitude
+        
+//       print("\(longitude)")
+    }
+    
+    func updateUILocation(playerSide: String) {
+        if playerSide == LocationConstants.east {
+            self.welcome_IMG_westSide.isHidden = true
+            self.welcome_IMG_eastSide.isHidden = false
+
+        } else {
+            self.welcome_IMG_eastSide.isHidden = true
+            self.welcome_IMG_westSide.isHidden = false
+
+        }
+        UserDefaults.standard.set(UserDefaultsConstants.playerSide, forKey: playerSide)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        
+        print("Authorization changed")
     }
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         print("Location manager failed \(error.localizedDescription)")
-    }
-    
-
-    
-    
     }
     
 }

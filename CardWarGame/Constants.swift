@@ -39,3 +39,9 @@ enum UserDefaultsConstants {
     static let userName = "userName"
     static let playerSide = "playerSide"
 }
+
+enum LocationConstants {
+    static let east = "east"
+    static let west = "west"
+    static let sideLongitude = 34.81801612783521
+}

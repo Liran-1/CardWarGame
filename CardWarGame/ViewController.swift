@@ -128,12 +128,15 @@ class ViewController: UIViewController {
     }
     
     func saveWinner() {
+        
+        
         if playerEastScore > playerWestScore {
             UserDefaults.standard.set(playerEastScore, forKey: EndGameConstants.score)
-            UserDefaults.standard.set(game_LBL_playerEastScore.text, forKey: EndGameConstants.winner)
+            UserDefaults.standard.set(game_LBL_playerEastName.text, forKey: EndGameConstants.winner)
+            print("\(game_LBL_playerEastName.text)")
         } else if playerWestScore > playerEastScore{
             UserDefaults.standard.set(playerWestScore, forKey: EndGameConstants.score)
-            UserDefaults.standard.set(game_LBL_playerWestScore.text, forKey: EndGameConstants.winner)
+            UserDefaults.standard.set(game_LBL_playerWestName.text, forKey: EndGameConstants.winner)
         } else {
             UserDefaults.standard.set(playerEastScore, forKey: EndGameConstants.score)
             UserDefaults.standard.set(GameConstants.computerName, forKey: EndGameConstants.winner)
