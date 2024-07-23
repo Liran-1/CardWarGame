@@ -27,7 +27,7 @@ class WelcomeViewController: UIViewController{
         initUI()
         
         welcomeUser()
-        setLocationManager()
+        initLocationManager()
     }
     
     func initUI() {
@@ -75,11 +75,16 @@ class WelcomeViewController: UIViewController{
         }
     }
 
+    deinit {
+        locationManager.delegate = nil
+    }
+    
+    
 }
 
 extension WelcomeViewController:  CLLocationManagerDelegate  {
 
-    func setLocationManager() {
+    func initLocationManager() {
         locationManager = CLLocationManager()
         locationManager.delegate = self
         
@@ -87,6 +92,27 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("Location manager failed \(error.localizedDescription)")
+    }
     
 
+    
+    
+    }
+    
 }
