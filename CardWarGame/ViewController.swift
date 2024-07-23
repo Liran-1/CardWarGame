@@ -38,13 +38,15 @@ class ViewController: UIViewController {
     func setUIStart() {
         self.game_IMG_playerEastCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
         self.game_IMG_playerWestCard.image = UIImage(named: CardConstants.cardImageBackgroundName)
-        let playerSide = GameConstants.eastSide//UserDefaults.standard.string(forKey: UserDefaultsConstants.playerSide)
+        
+        let playerSide = loadFromUserDefaults(key: UserDefaultsConstants.playerSide)
+        let playerName = loadFromUserDefaults(key: UserDefaultsConstants.userName)
         if (playerSide == GameConstants.eastSide){
-            self.game_LBL_playerEastName.text = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName)
-            self.game_LBL_playerWestName.text = UserDefaults.standard.string(forKey: GameConstants.computerName)
+            self.game_LBL_playerEastName.text = playerName
+            self.game_LBL_playerWestName.text = GameConstants.computerName
         } else {
-            self.game_LBL_playerEastName.text = UserDefaults.standard.string(forKey: GameConstants.computerName)
-            self.game_LBL_playerWestName.text = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName)
+            self.game_LBL_playerEastName.text = GameConstants.computerName
+            self.game_LBL_playerWestName.text = playerName
         }
     }
     
@@ -58,11 +60,11 @@ class ViewController: UIViewController {
             finishGame()
         }
         timerCounter += 1
-        if(timerCounter == GameConstants.timerFrontCard){
+        if(timerCounter == GameConstants.timerRevealCard){
             let cardsPlayed = self.gameManager.playRound()
             self.showCards(cardsPlayed: cardsPlayed!)
             self.updateScore(cardsPlayed: cardsPlayed!)
-        } else if ( timerCounter == GameConstants.roundTime) {
+        } else if ( timerCounter == GameConstants.timerRoundTime) {
             self.hideCards()
             timerCounter = 0
             roundsCounter += 1
@@ -128,19 +130,17 @@ class ViewController: UIViewController {
     }
     
     func saveWinner() {
-        
-        
+        var winnerScore:Int = -1
+        var winnerName: String = GameConstants.computerName
         if playerEastScore > playerWestScore {
-            UserDefaults.standard.set(playerEastScore, forKey: EndGameConstants.score)
-            UserDefaults.standard.set(game_LBL_playerEastName.text, forKey: EndGameConstants.winner)
-            print("\(game_LBL_playerEastName.text)")
-        } else if playerWestScore > playerEastScore{
-            UserDefaults.standard.set(playerWestScore, forKey: EndGameConstants.score)
-            UserDefaults.standard.set(game_LBL_playerWestName.text, forKey: EndGameConstants.winner)
-        } else {
-            UserDefaults.standard.set(playerEastScore, forKey: EndGameConstants.score)
-            UserDefaults.standard.set(GameConstants.computerName, forKey: EndGameConstants.winner)
+            winnerScore = playerEastScore
+            winnerName = (game_LBL_playerEastName.text ?? GameConstants.computerName)
+        } else if playerWestScore >= playerEastScore{
+            winnerScore = playerWestScore
+            winnerName = (game_LBL_playerWestName.text ?? GameConstants.computerName)
         }
+        saveToUserDefaults(value: String(winnerScore), key: UserDefaultsConstants.winnerScore)
+        saveToUserDefaults(value: winnerName, key: UserDefaultsConstants.winnerName)
     }
     
     func navigateToEndGameScreen() {
@@ -151,7 +151,17 @@ class ViewController: UIViewController {
 //        }
         performSegue(withIdentifier: "EndGameSegue", sender: nil)
     }
-
+    
+    func saveToUserDefaults(value: String, key: String) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
+    
+    func loadFromUserDefaults(key: String) -> String{
+        if let loadedData = UserDefaults.standard.string(forKey: key) {
+            return loadedData
+        }
+        return ""
+    }
 
 } // end class ViewController
 

@@ -17,13 +17,26 @@ class EndGameViewController: UIViewController {
         super.viewDidLoad()
 
         declareWinner()
+        saveToUserDefaults(value: String(-1), key: UserDefaultsConstants.winnerScore)
+        saveToUserDefaults(value: "", key: UserDefaultsConstants.playerSide)
     }
     
     func declareWinner() {
-        let winner = UserDefaults.standard.string(forKey: "winner")
-        let score = UserDefaults.standard.string(forKey: "score")
-        end_LBL_winner.text = "\(EndGameConstants.winner) \(winner ?? GameConstants.computerName)"
-        end_LBL_score.text = "\(EndGameConstants.score) \(score ?? String(Int(-1)))"
+        let winner: String = loadFromUserDefaults(key: UserDefaultsConstants.winnerName)//UserDefaults.standard.string(forKey: "winner")
+        let score: String = loadFromUserDefaults(key: UserDefaultsConstants.winnerScore )//UserDefaults.standard.string(forKey: "score")
+        end_LBL_winner.text = "\(EndGameConstants.winner) \(winner)"
+        end_LBL_score.text = "\(EndGameConstants.score) \(score)"
+    }
+    
+    func saveToUserDefaults(value: String, key: String) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
+    
+    func loadFromUserDefaults(key: String) -> String{
+        if let loadedData = UserDefaults.standard.string(forKey: key) {
+            return loadedData
+        }
+        return ""
     }
     
     

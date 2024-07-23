@@ -25,8 +25,8 @@ class WelcomeViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         initUI()
-        
         welcomeUser()
+        
         initLocationManager()
     }
     
@@ -49,14 +49,18 @@ class WelcomeViewController: UIViewController{
     
     func welcomeUser() {
         welcome_TXTF_enterName.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged) // update UI on textField changes
-        
+
         if let userName = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName){     // if name found in UserDefaults
-            welcome_LBL_enterName.text = "Welcome \(userName)"
+            welcome_LBL_enterName.text = "\(WelcomeConstants.welcome) \(userName)"
             welcome_TXTF_enterName.isHidden = true
         } else {                                                                // if name not found in UserDefaults
-            welcome_LBL_enterName.text = "Enter your name"
+            welcome_LBL_enterName.text = WelcomeConstants.enterYourName
             welcome_TXTF_enterName.isHidden = false
         }
+    }
+    
+    func saveToDefaults(value: String, key: String) {
+        UserDefaults.standard.set(value, forKey: key)
     }
     
     @objc func textFieldDidChange(_ userNameField: UITextField){
@@ -94,38 +98,29 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if let location = locations.last {
             let latitude = location.coordinate.latitude
             let longitude = location.coordinate.longitude
-
+            var playerSide: String = ""
             print("\(longitude)")
             if longitude > LocationConstants.sideLongitude {
-                updateUILocation(playerSide: LocationConstants.east)
+                playerSide = LocationConstants.east
             } else {
-                updateUILocation(playerSide: LocationConstants.west)
+                playerSide = LocationConstants.west
             }
-        }
-        
-//        guard let location = locations.first else {print("NoLocation"); return }
-        
-//       let latitude = location.coordinate.latitude
-//        let longitude = location.coordinate.longitude
-        
-//       print("\(longitude)")
-    }
+            updateUILocation(playerSide: playerSide)
+            saveToDefaults(value: playerSide, key: UserDefaultsConstants.playerSide)
+        } // end if
+    } // end func locationManager
     
     func updateUILocation(playerSide: String) {
         if playerSide == LocationConstants.east {
             self.welcome_IMG_westSide.isHidden = true
             self.welcome_IMG_eastSide.isHidden = false
-
         } else {
             self.welcome_IMG_eastSide.isHidden = true
             self.welcome_IMG_westSide.isHidden = false
-
         }
-        UserDefaults.standard.set(UserDefaultsConstants.playerSide, forKey: playerSide)
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
