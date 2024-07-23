@@ -72,11 +72,18 @@ class WelcomeViewController: UIViewController{
     }
         
     @IBAction func welcome_BTN_start(_ sender: Any) {
-        if let userName = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName) {
+        if let _ = UserDefaults.standard.string(forKey: UserDefaultsConstants.userName) {
             return
         } else if let userName = welcome_TXTF_enterName.text {
-            UserDefaults.standard.set(userName, forKey: UserDefaultsConstants.userName)
+            saveToDefaults(value: userName, key: UserDefaultsConstants.userName)
         }
+    }
+    
+    func loadFromUserDefaults(key: String) -> String?{
+        if let loadedData = UserDefaults.standard.string(forKey: key) {
+            return loadedData
+        }
+        return nil
     }
 
     deinit {
@@ -99,7 +106,7 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            let latitude = location.coordinate.latitude
+            _ = location.coordinate.latitude
             let longitude = location.coordinate.longitude
             var playerSide: String = ""
             print("\(longitude)")
