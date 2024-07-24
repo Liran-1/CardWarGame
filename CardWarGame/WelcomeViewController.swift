@@ -59,10 +59,6 @@ class WelcomeViewController: UIViewController{
         }
     }
     
-    func saveToDefaults(value: String, key: String) {
-        UserDefaults.standard.set(value, forKey: key)
-    }
-    
     @objc func textFieldDidChange(_ userNameField: UITextField){
         if let name = welcome_TXTF_enterName.text, !name.isEmpty{
             welcome_BTN_start.isEnabled = true
@@ -78,6 +74,10 @@ class WelcomeViewController: UIViewController{
             saveToDefaults(value: userName, key: UserDefaultsConstants.userName)
         }
     }
+
+    func saveToDefaults(value: String, key: String) {
+        UserDefaults.standard.set(value, forKey: key)
+    }
     
     func loadFromUserDefaults(key: String) -> String?{
         if let loadedData = UserDefaults.standard.string(forKey: key) {
@@ -89,7 +89,6 @@ class WelcomeViewController: UIViewController{
     deinit {
         locationManager.delegate = nil
     }
-    
     
 }
 
@@ -107,10 +106,9 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             _ = location.coordinate.latitude
-            let longitude = 100.0 //location.coordinate.longitude
+            let longitude = location.coordinate.longitude
             var playerSide: String = ""
             print("\(longitude)")
-            
             if longitude > LocationConstants.sideLongitude {
                 playerSide = LocationConstants.east
             } else {
@@ -127,15 +125,11 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
                 self.welcome_IMG_eastSide.alpha = 1.0
                 self.welcome_IMG_westSide.alpha = 0.0
             }
-//            self.welcome_IMG_westSide.isHidden = true
-//            self.welcome_IMG_eastSide.isHidden = false
         } else {
             UIView.animate(withDuration: 2.0) {
                 self.welcome_IMG_westSide.alpha = 1.0
                 self.welcome_IMG_eastSide.alpha = 0.0
             }
-//            self.welcome_IMG_eastSide.isHidden = true
-//            self.welcome_IMG_westSide.isHidden = false
         }
     }
     
