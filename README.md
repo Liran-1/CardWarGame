@@ -33,7 +33,7 @@ To run the Card Game iOS Application:
 
 1. **Clone the Repository**:
 
-```git clone https://github.com/your/repository.git```
+```git clone https://github.com/Liran-1/CardWarGame.git```
 
 
 2. **Open the Project in Xcode**:
