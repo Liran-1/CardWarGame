@@ -8,13 +8,12 @@
 import Foundation
 
 enum GameConstants {
-    static let roundsToPlay = 3
+    static let roundsToPlay = 10        // CHANGE THIS VALUE TO THE NUMBER OF GAMES YOU WANT TO PLAY
+    /////////////////////////////////////////////////
     static let timerRevealCard = 2
     static let timerShowCard = 3
     static let timerRoundTime = timerRevealCard + timerShowCard
     static let computerName = "PC"
-    static let eastSide = "eastSide"
-    static let westSide = "westSide"
     static let selfCard = "selfCard"
     static let otherCard = "otherCard"
     static let animateLeftStr = "left"

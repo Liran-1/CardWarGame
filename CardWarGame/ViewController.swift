@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         
         let playerSide = loadFromUserDefaults(key: UserDefaultsConstants.playerSide)
         let playerName = loadFromUserDefaults(key: UserDefaultsConstants.userName)
-        if (playerSide == GameConstants.eastSide){
+        if (playerSide == LocationConstants.east){
             self.game_LBL_playerEastName.text = playerName
             self.game_LBL_playerWestName.text = GameConstants.computerName
         } else {

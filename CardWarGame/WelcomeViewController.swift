@@ -107,9 +107,10 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             _ = location.coordinate.latitude
-            let longitude = location.coordinate.longitude
+            let longitude = 100.0 //location.coordinate.longitude
             var playerSide: String = ""
             print("\(longitude)")
+            
             if longitude > LocationConstants.sideLongitude {
                 playerSide = LocationConstants.east
             } else {
@@ -122,11 +123,19 @@ extension WelcomeViewController:  CLLocationManagerDelegate  {
     
     func updateUILocation(playerSide: String) {
         if playerSide == LocationConstants.east {
-            self.welcome_IMG_westSide.isHidden = true
-            self.welcome_IMG_eastSide.isHidden = false
+            UIView.animate(withDuration: 2.0) {
+                self.welcome_IMG_eastSide.alpha = 1.0
+                self.welcome_IMG_westSide.alpha = 0.0
+            }
+//            self.welcome_IMG_westSide.isHidden = true
+//            self.welcome_IMG_eastSide.isHidden = false
         } else {
-            self.welcome_IMG_eastSide.isHidden = true
-            self.welcome_IMG_westSide.isHidden = false
+            UIView.animate(withDuration: 2.0) {
+                self.welcome_IMG_westSide.alpha = 1.0
+                self.welcome_IMG_eastSide.alpha = 0.0
+            }
+//            self.welcome_IMG_eastSide.isHidden = true
+//            self.welcome_IMG_westSide.isHidden = false
         }
     }
     
